@@ -1,0 +1,210 @@
+:root {
+    --primary-color: #6366f1;
+    --secondary-color: #a855f7;
+    --accent-glow: #00f3ff;
+    --bg-dark: #050510;
+    --glass-bg: rgba(10, 10, 20, 0.65);
+    --glass-border: rgba(100, 200, 255, 0.15);
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--text-primary);
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Space Background Animation */
+/* Utilizing sass-like parallax stars logic converted to pure CSS for performance */
+.stars,
+.stars2,
+.stars3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: transparent;
+    z-index: -1;
+}
+
+.stars {
+    background-image:
+        radial-gradient(1px 1px at 20px 30px, #fff, transparent),
+        radial-gradient(1px 1px at 40px 70px, #fff, transparent),
+        radial-gradient(1px 1px at 50px 160px, #fff, transparent),
+        radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+        radial-gradient(1.5px 1.5px at 130px 80px, #fff, transparent),
+        radial-gradient(1.5px 1.5px at 160px 120px, #fff, transparent);
+    background-size: 200px 200px;
+    animation: moveStars 100s linear infinite;
+}
+
+.stars2 {
+    background-image:
+        radial-gradient(2px 2px at 100px 150px, #fff, transparent),
+        radial-gradient(2px 2px at 200px 50px, #fff, transparent),
+        radial-gradient(2px 2px at 300px 250px, #fff, transparent);
+    background-size: 400px 400px;
+    animation: moveStars 150s linear infinite;
+}
+
+.stars3 {
+    background-image:
+        radial-gradient(3px 3px at 50px 200px, #fff, transparent),
+        radial-gradient(3px 3px at 250px 100px, #fff, transparent);
+    background-size: 500px 500px;
+    animation: moveStars 200s linear infinite;
+}
+
+@keyframes moveStars {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 0 1000px;
+    }
+}
+
+/* Page Container */
+.page-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    z-index: 10;
+}
+
+/* Glass Card with Glowing Effect */
+.glass-card {
+    width: 100%;
+    max-width: 950px;
+    height: 90vh;
+    /* Taller for the 'space portal' feel */
+    max-height: 850px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    /* The Glow Effect */
+    box-shadow:
+        0 0 20px rgba(99, 102, 241, 0.3),
+        0 0 60px rgba(168, 85, 247, 0.1),
+        inset 0 0 20px rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* transition: transform 0.3s ease, box-shadow 0.3s ease; Removed floating animation */
+    /* animation: floatCard 6s ease-in-out infinite; Removed floating animation */
+}
+
+
+
+@keyframes floatCard {
+
+    0%,
+    100% {
+        transform: translateY(0);
+        box-shadow: 0 0 25px rgba(99, 102, 241, 0.4);
+    }
+
+    50% {
+        transform: translateY(-10px);
+        box-shadow: 0 0 45px rgba(99, 102, 241, 0.6);
+    }
+}
+
+/* Header */
+.chat-header {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(5, 5, 16, 0.6);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Glowing line under header */
+.chat-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-glow), transparent);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.chat-header h1 {
+    font-family: 'Orbitron', sans-serif;
+    /* Futuristic font */
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: linear-gradient(to right, #fff, #a5f3fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(165, 243, 252, 0.5);
+    margin-bottom: 0.5rem;
+}
+
+.chat-header p {
+    font-size: 0.95rem;
+    color: #cbd5e1;
+    letter-spacing: 0.5px;
+}
+
+/* Iframe Container */
+.iframe-container {
+    flex: 1;
+    position: relative;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 640px) {
+    .page-container {
+        padding: 0;
+    }
+
+    .glass-card {
+        height: 100vh;
+        max-height: none;
+        border-radius: 0;
+        border: none;
+        animation: none;
+        /* Disable floating on mobile to prevent glitches */
+    }
+
+    .chat-header h1 {
+        font-size: 1.4rem;
+    }
+}
