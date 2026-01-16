@@ -192,28 +192,38 @@ iframe {
 /* Mobile Responsiveness */
 @media (max-width: 640px) {
     .page-container {
-        padding: 0;
+        padding: 1rem;
+        /* Bring back padding to center the card */
+        height: 100dvh;
+        /* Force container to be full viewport height */
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .glass-card {
-        /* Use dynamic viewport height to account for mobile browser bars */
-        height: 100dvh;
-        /* Fallback for older browsers */
-        height: -webkit-fill-available;
+        /* Reduce height to ensure bottom is visible and floating */
+        height: 85dvh;
+        width: 100%;
         max-height: none;
-        border-radius: 0;
-        border: none;
+
+        /* Restore card look */
+        border-radius: 20px;
+        border: 1px solid var(--glass-border);
+
+        /* Ensure it doesn't touch edges */
+        margin: 0;
+
+        /* Remove animation if performance is a concern, or keep it off as requested */
         animation: none;
     }
 
     .chat-header {
-        padding: 1rem 1.25rem;
-        /* Reduced padding */
+        padding: 1rem;
     }
 
     .chat-header h1 {
         font-size: 1.2rem;
-        /* Slighly smaller for better fit */
         margin-bottom: 0.2rem;
     }
 
