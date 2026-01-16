@@ -196,15 +196,28 @@ iframe {
     }
 
     .glass-card {
-        height: 100vh;
+        /* Use dynamic viewport height to account for mobile browser bars */
+        height: 100dvh;
+        /* Fallback for older browsers */
+        height: -webkit-fill-available;
         max-height: none;
         border-radius: 0;
         border: none;
         animation: none;
-        /* Disable floating on mobile to prevent glitches */
+    }
+
+    .chat-header {
+        padding: 1rem 1.25rem;
+        /* Reduced padding */
     }
 
     .chat-header h1 {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
+        /* Slighly smaller for better fit */
+        margin-bottom: 0.2rem;
+    }
+
+    .chat-header p {
+        font-size: 0.8rem;
     }
 }
